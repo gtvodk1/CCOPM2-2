@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cout<<"Escribe un numero: "<<endl;
+    cin>>n;
+    int i;
+
+    for(i=1 ; i<n ; i=i+2){
+        if (i>1)
+        {
+            cout<<",";
+        }
+          cout<<i;
+        }
+    cout<<".";
+}
