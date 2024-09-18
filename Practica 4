@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+class Date
+{
+    private:
+    int mes;
+    int dia;
+    int aÃ±o;
+    public:
+    Date(int,int,int);
+    void mostrar_fecha();
+    void setMes(int);
+    int getMes();
+    void setDia(int);
+    int getDia();
+    void setAÃ±o(int);
+    int getAÃ±o();
+    
+};
+
+Date::Date(int _mes, int _dia, int _aÃ±o)
+{
+ mes=_mes;
+ dia=_dia;
+ aÃ±o=_aÃ±o;
+ 
+ if ( mes<1 || mes>12)
+ {
+     mes=1;
+ }
+}
+void Date::mostrar_fecha()
+{
+    cout<<dia<<"/"<<mes<<"/"<<aÃ±o<<"/"<<endl;
+}
+
+void Date::setMes(int _mes)
+{
+    mes=_mes;
+    if ( mes<1 || mes>12)
+    {
+     mes=1;
+    }
+}
+int Date::getMes()
+{
+    return mes;
+}
+void Date::setDia(int _dia)
+{
+    dia=_dia;
+}
+int Date::getDia()
+{
+    return dia;
+}
+void Date::setAÃ±o(int _aÃ±o)
+{
+    aÃ±o=_aÃ±o;
+}
+int Date::getAÃ±o()
+{
+    return aÃ±o;
+}
+
+int main()
+{
+    Date mes_valido(10,10,2007);
+    mes_valido.mostrar_fecha();
+    Date mes_invalido(15,15,2007);
+    mes_invalido.mostrar_fecha();
+
+    return 0;
+}
