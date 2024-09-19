@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+
+bool esPrimo(int num) {
+    int i=2;
+    if (num<=1){
+        return false;
+    }
+    for (i=2; i<num;i++)
+    {
+        if(num%i==0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void imprimiPrimo(int n) 
+{
+    int x;
+    for (int i=2; i < n; i++)
+    {
+        if (esPrimo(i))
+        {
+            x=i;
+        }
+    }
+    cout<<x;
+}
+int main() {
+    imprimiPrimo(34298);
+    //2 3 5 7 11 13 17 19 23 29 31 37 41 47    
+
+    return 0;
+}
