@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+void alCuadrado(int a[] , int b)
+{
+    for( int i=0;i<b;i++)
+    {
+        a[i]=a[i]*a[i];
+    }
+}
+
+void mostrar(int a[], int b )
+{
+    for( int i=0; i<b;i++)
+    {
+        cout<<" "<<a[i];
+    }
+}
+
+int main()
+{
+    const int a=5;
+    int vec[a]={1,2,3,4,5};
+    alCuadrado(vec,a);
+    mostrar(vec,a);
+    
+    return 0;
+}
+
+
+//------> Con vector
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void alCuadrad(vector<int>& a)
+{
+    for (int& i : a)
+    {
+        i=i*i;
+    }
+    
+    
+    
+}
+
+int main()
+{
+    int b = 5; 
+    vector <int> a = {1, 2, 3, 4, 5};
+    alCuadrad(a);
+    for (int i : a)
+    {
+        cout << i <<" "; 
+        
+    }
+    
+    return 0;
+}
