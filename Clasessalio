@@ -1,0 +1,84 @@
+#include <iostream>
+#include <string>
+
+class Fecha {
+private:
+    int dia;  
+    int mes; 
+
+public:
+    Fecha(int d, int m) : dia(d), mes(m) {}
+
+    // Método para verificar si es el cumpleaños del empleado en el mes actual
+    virtual bool esCumpleaños(int mesActual) const {
+        return mes == mesActual;  // Verifica si el mes actual coincide con el mes del cumpleaños
+    }
+};
+
+class Employee {
+private:
+    std::string firstName;
+    std::string lastName;
+    std::string socialSecurityNumber;
+    Fecha fechaCumpleaños;  // Objeto de tipo Fecha para manejar la fecha de cumpleaños
+
+public:
+    // Constructor de Employee, que también recibe un objeto Fecha
+    Employee(const std::string& fName, const std::string& lName, const std::string& ssn, const Fecha& fecha)
+        : firstName(fName), lastName(lName), socialSecurityNumber(ssn), fechaCumpleaños(fecha) {}
+
+    virtual ~Employee() = default; 
+
+    // Métodos setters y getters
+    void setFirstName(const std::string& fName) { firstName = fName; }
+    std::string getFirstName() const { return firstName; }
+
+    void setLastName(const std::string& lName) { lastName = lName; }
+    std::string getLastName() const { return lastName; }
+
+    void setSocialSecurityNumber(const std::string& ssn) { socialSecurityNumber = ssn; }
+    std::string getSocialSecurityNumber() const { return socialSecurityNumber; }
+
+    // Método para calcular la nómina, que incluye un bono si es su cumpleaños
+    double calcularNomina(int mesActual, double salarioBase) const {
+        double nomina = salarioBase;
+
+        if (fechaCumpleaños.esCumpleaños(mesActual)) {
+            nomina += 100;  // Bono de $100 si es su cumpleaños este mes
+        }
+
+        return nomina;
+    }
+
+    // Método para mostrar la información del empleado y su nómina
+    void mostrarEmpleado(int mesActual, double salarioBase) const {
+        std::cout << "Empleado: " << firstName << " " << lastName << std::endl;
+        std::cout << "Número de Seguridad Social: " << socialSecurityNumber << std::endl;
+        std::cout << "Nómina: $" << calcularNomina(mesActual, salarioBase) << std::endl;
+    }
+};
+
+int main() {
+    // Suponemos que el mes actual es noviembre (mes 11)
+    int mesActual = 11;
+
+    // Creamos algunos empleados con fechas de cumpleaños
+    Employee juan("Juan", "Pérez", "123-45-6789", Fecha(15, 11));  // Cumpleaños en noviembre
+    Employee maria("María", "Gómez", "987-65-4321", Fecha(22, 8)); // Cumpleaños en agosto
+    Employee carlos("Carlos", "López", "111-22-3333", Fecha(5, 11)); // Cumpleaños en noviembre
+
+    // Suponemos que el salario base es 1500.00
+    double salarioBase = 1500.00;
+
+    // Mostrar la información y nómina de cada empleado
+    juan.mostrarEmpleado(mesActual, salarioBase);
+    std::cout << std::endl;
+
+    maria.mostrarEmpleado(mesActual, salarioBase);
+    std::cout << std::endl;
+
+    carlos.mostrarEmpleado(mesActual, salarioBase);
+    std::cout << std::endl;
+
+    return 0;
+}
